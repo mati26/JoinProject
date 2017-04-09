@@ -7,4 +7,7 @@ import lombok.Data;
 public class Entity {
     private Long id;
     private String rest;
+    public Entity (long id) {
+        this.id = id;
+    }
 }
