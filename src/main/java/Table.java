@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Created by Kacper on 2017-04-09.
@@ -21,11 +22,16 @@ public class Table {
         return (int)Math.ceil((double) rows.size()/(rowsPerBlock*(bufferSize-1)));
     }
 
-    public ArrayList<Entity> getInnerPart(int partNumber) {
-        return (ArrayList<Entity>) rows.subList(partNumber*rowsPerBlock,partNumber*rowsPerBlock+625);
+    public List<Entity> getInnerPart(int partNumber) {
+        return (List<Entity>) rows.subList(partNumber*rowsPerBlock,Math.max(partNumber*rowsPerBlock+rowsPerBlock,rows.size()));
     }
 
-    public ArrayList<Entity> getOuterPart(int partNumber,int bufferSize) {
-        return (ArrayList<Entity>) rows.subList(partNumber*rowsPerBlock*(bufferSize-1),partNumber*rowsPerBlock*(bufferSize-1)+625);
+    public List<Entity> getOuterPart(int partNumber,int bufferSize) {
+        return (List<Entity>) rows.subList(partNumber*rowsPerBlock*(bufferSize-1),Math.min(partNumber*rowsPerBlock*(bufferSize-1)+(rowsPerBlock*(bufferSize-1)),rows.size()));
+    }
+
+    public int getOuterPartSize ( int partNumber,int bufferSize) {
+        System.out.println(getOuterPart(partNumber,bufferSize).size());
+        return (int) Math.ceil((double) getOuterPart(partNumber,bufferSize).size()/rowsPerBlock);
     }
 }

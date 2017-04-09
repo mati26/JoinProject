@@ -13,7 +13,7 @@ public class App {
         System.out.println(tableB.getInnerPartsCount(bufferSize));
         int iO = 0;
         for (int i = 0; i<tableA.getOuterPartsCount(bufferSize);i++) {
-            iO += bufferSize-1;
+            iO+=tableA.getOuterPartSize(i,bufferSize);
             for (int j = 0; j<tableB.getInnerPartsCount(bufferSize);j++) {
                 iO += 1;
             }
