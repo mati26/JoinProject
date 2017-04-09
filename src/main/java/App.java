@@ -14,7 +14,7 @@ public class App {
         int iO = 0;
         for (int i = 0; i<tableA.getOuterPartsCount(bufferSize);i++) {
             iO += bufferSize-1;
-            for (int j = 0; i<tableB.getInnerPartsCount(bufferSize);i++) {
+            for (int j = 0; j<tableB.getInnerPartsCount(bufferSize);j++) {
                 iO += 1;
             }
         }
