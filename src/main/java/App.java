@@ -9,16 +9,8 @@ public class App {
         int bufferSize = 4;
         Table tableA = new Table(tableSize);
         Table tableB = new Table(tableSize);
-        System.out.println(tableA.getOuterPartsCount(bufferSize));
-        System.out.println(tableB.getInnerPartsCount(bufferSize));
-        int iO = 0;
-        for (int i = 0; i<tableA.getOuterPartsCount(bufferSize);i++) {
-            iO+=tableA.getOuterPartSize(i,bufferSize);
-            for (int j = 0; j<tableB.getInnerPartsCount(bufferSize);j++) {
-                iO += 1;
-            }
-        }
 
-        System.out.println(iO);
+        System.out.println(NestedLoopsJoiner.iOs(tableA,tableB,bufferSize));
+        System.out.println(SortMergeJoiner.iOs(tableA,tableB,bufferSize,1000));
     }
 }

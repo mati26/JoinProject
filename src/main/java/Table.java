@@ -31,7 +31,6 @@ public class Table {
     }
 
     public int getOuterPartSize ( int partNumber,int bufferSize) {
-        System.out.println(getOuterPart(partNumber,bufferSize).size());
         return (int) Math.ceil((double) getOuterPart(partNumber,bufferSize).size()/rowsPerBlock);
     }
 }
