@@ -16,8 +16,10 @@ public class SortMergeJoiner implements Joiner {
         return null;
     }
 
-    public static int iOs(Table tableA,Table tableB,int bufferSize,int bandSize) {
+    public static Result join(Table tableA,Table tableB,int bufferSize,int bandSize) {
+        Result result = new Result();
         int iO = 0;
+        int comparitions = 0;
         for (int i = 0; i<tableA.getOuterPartsCount(bufferSize);i++) {
             iO+=tableA.getOuterPartSize(i,bufferSize);
                 for (int j = 0; j < tableB.getInnerPartsCount(bufferSize); j++) {
@@ -25,10 +27,11 @@ public class SortMergeJoiner implements Joiner {
                     for (Entity rowA : tableA.getOuterPart(i,bufferSize)) {
                         for (Entity rowB : tableB.getInnerPart(j)) {
                             if (rowB.getId() > rowA.getId()+(bandSize/2)) {
+                                comparitions++;
                                 break;
                             }
                             if (rowB.getId() < rowA.getId()-(bandSize/2)) {
-                                //join
+                                comparitions++;
                             }
 
                         }
@@ -36,6 +39,8 @@ public class SortMergeJoiner implements Joiner {
                 }
 
         }
-        return iO;
+        result.setiOs(iO);
+        result.setComparitions(comparitions);
+        return result;
     }
 }

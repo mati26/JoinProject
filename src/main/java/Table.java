@@ -23,7 +23,7 @@ public class Table {
     }
 
     public List<Entity> getInnerPart(int partNumber) {
-        return (List<Entity>) rows.subList(partNumber*rowsPerBlock,Math.max(partNumber*rowsPerBlock+rowsPerBlock,rows.size()));
+        return (List<Entity>) rows.subList(partNumber*rowsPerBlock,Math.min(partNumber*rowsPerBlock+rowsPerBlock,rows.size()));
     }
 
     public List<Entity> getOuterPart(int partNumber,int bufferSize) {

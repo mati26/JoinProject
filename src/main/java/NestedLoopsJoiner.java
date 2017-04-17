@@ -15,14 +15,19 @@ public class NestedLoopsJoiner implements Joiner {
     public JoinResult join() {
         return null;
     }
-    public static int iOs(Table tableA,Table tableB,int bufferSize) {
+    public static Result join(Table tableA,Table tableB,int bufferSize) {
+        Result result = new Result();
         int iO = 0;
+        int comparitions = 0;
         for (int i = 0; i<tableA.getOuterPartsCount(bufferSize);i++) {
             iO+=tableA.getOuterPartSize(i,bufferSize);
             for (int j = 0; j<tableB.getInnerPartsCount(bufferSize);j++) {
                 iO += 1;
+                comparitions += tableA.getOuterPart(i,bufferSize).size()* tableB.getInnerPart(j).size();
             }
         }
-        return iO;
+        result.setiOs(iO);
+        result.setComparitions(comparitions);
+        return result;
     }
 }

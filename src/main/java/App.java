@@ -9,8 +9,11 @@ public class App {
         int bufferSize = 4;
         Table tableA = new Table(tableSize);
         Table tableB = new Table(tableSize);
-
-        System.out.println(NestedLoopsJoiner.iOs(tableA,tableB,bufferSize));
-        System.out.println(SortMergeJoiner.iOs(tableA,tableB,bufferSize,1000));
+        Result nlResult = NestedLoopsJoiner.join(tableA,tableB,bufferSize);
+        Result smResult = SortMergeJoiner.join(tableA,tableB,bufferSize,1000);
+        System.out.println(nlResult.getiOs());
+        System.out.println(nlResult.getComparitions());
+        System.out.println(smResult.getiOs());
+        System.out.println(smResult.getComparitions());
     }
 }
