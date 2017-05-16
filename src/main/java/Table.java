@@ -15,22 +15,29 @@ public class Table {
     }
 
     public int getInnerPartsCount(int bufferSize) {
-        return (int)Math.ceil((double) rows.size()/rowsPerBlock );
+        return (int)Math.ceil((double) rows.size()/ getRowsPerBlock());
     }
 
     public int getOuterPartsCount (int bufferSize) {
-        return (int)Math.ceil((double) rows.size()/(rowsPerBlock*(bufferSize-1)));
+        return (int)Math.ceil((double) rows.size()/(getRowsPerBlock() *(bufferSize-1)));
     }
 
     public List<Entity> getInnerPart(int partNumber) {
-        return (List<Entity>) rows.subList(partNumber*rowsPerBlock,Math.min(partNumber*rowsPerBlock+rowsPerBlock,rows.size()));
+        return (List<Entity>) rows.subList(partNumber* getRowsPerBlock(),Math.min(partNumber* getRowsPerBlock() + getRowsPerBlock(),rows.size()));
     }
 
     public List<Entity> getOuterPart(int partNumber,int bufferSize) {
-        return (List<Entity>) rows.subList(partNumber*rowsPerBlock*(bufferSize-1),Math.min(partNumber*rowsPerBlock*(bufferSize-1)+(rowsPerBlock*(bufferSize-1)),rows.size()));
+        return (List<Entity>) rows.subList(partNumber* getRowsPerBlock() *(bufferSize-1),Math.min(partNumber* getRowsPerBlock() *(bufferSize-1)+(getRowsPerBlock() *(bufferSize-1)),rows.size()));
     }
 
     public int getOuterPartSize ( int partNumber,int bufferSize) {
-        return (int) Math.ceil((double) getOuterPart(partNumber,bufferSize).size()/rowsPerBlock);
+        return (int) Math.ceil((double) getOuterPart(partNumber,bufferSize).size()/ getRowsPerBlock());
+    }
+
+    public int getRowsPerBlock() {
+        return rowsPerBlock;
+    }
+    public int getSize() {
+        return rows.size();
     }
 }

@@ -20,6 +20,7 @@ public class SortMergeJoiner implements Joiner {
         Result result = new Result();
         int iO = 0;
         int comparitions = 0;
+        int size = 0;
         for (int i = 0; i<tableA.getOuterPartsCount(bufferSize);i++) {
             iO+=tableA.getOuterPartSize(i,bufferSize);
                 for (int j = 0; j < tableB.getInnerPartsCount(bufferSize); j++) {
@@ -30,12 +31,16 @@ public class SortMergeJoiner implements Joiner {
                             if (rowB.getId() > rowA.getId()+(bandSize/2)) {
                                 break;
                             }
-
+                            if (rowB.getId() <= rowA.getId()+(bandSize/2)&&rowB.getId() >= rowA.getId()-(bandSize/2)) {
+                                size++;
+                            }
                         }
                     }
                 }
 
         }
+        iO+=(int)Math.ceil((double) (size*2)/(tableA.getRowsPerBlock()));
+        iO+=(int)Math.ceil((double) tableA.getSize()*Math.log(tableA.getSize())/(tableA.getRowsPerBlock()));
         result.setiOs(iO);
         result.setComparitions(comparitions);
         return result;

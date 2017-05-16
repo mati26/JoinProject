@@ -9,8 +9,8 @@ public class App {
         int bufferSize = 4;
         Table tableA = new Table(tableSize);
         Table tableB = new Table(tableSize);
-        Result nlResult = NestedLoopsJoiner.join(tableA,tableB,bufferSize);
-        Result smResult = SortMergeJoiner.join(tableA,tableB,bufferSize,10);
+        Result nlResult = NestedLoopsJoiner.join(tableA,tableB,bufferSize,10000);
+        Result smResult = SortMergeJoiner.join(tableA,tableB,bufferSize,10000);
         System.out.println(nlResult.getiOs());
         System.out.println(nlResult.getComparitions());
         System.out.println(smResult.getiOs());
