@@ -26,12 +26,9 @@ public class SortMergeJoiner implements Joiner {
                     iO += 1;
                     for (Entity rowA : tableA.getOuterPart(i,bufferSize)) {
                         for (Entity rowB : tableB.getInnerPart(j)) {
+                            comparitions++;
                             if (rowB.getId() > rowA.getId()+(bandSize/2)) {
-                                comparitions++;
                                 break;
-                            }
-                            if (rowB.getId() < rowA.getId()-(bandSize/2)) {
-                                comparitions++;
                             }
 
                         }

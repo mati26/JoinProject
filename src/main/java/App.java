@@ -10,7 +10,7 @@ public class App {
         Table tableA = new Table(tableSize);
         Table tableB = new Table(tableSize);
         Result nlResult = NestedLoopsJoiner.join(tableA,tableB,bufferSize);
-        Result smResult = SortMergeJoiner.join(tableA,tableB,bufferSize,1000);
+        Result smResult = SortMergeJoiner.join(tableA,tableB,bufferSize,10);
         System.out.println(nlResult.getiOs());
         System.out.println(nlResult.getComparitions());
         System.out.println(smResult.getiOs());
