@@ -34,7 +34,7 @@ public class NestedLoopsJoiner implements Joiner {
                 }
             }
         }
-        iO+=(int)Math.ceil((double) (size*2)/(tableA.getRowsPerBlock()));
+        result.setJoinIOs((int)Math.ceil((double) (size*2)/(tableA.getRowsPerBlock())));
         result.setiOs(iO);
         result.setComparitions(comparitions);
         return result;

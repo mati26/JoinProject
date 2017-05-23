@@ -39,8 +39,8 @@ public class SortMergeJoiner implements Joiner {
                 }
 
         }
-        iO+=(int)Math.ceil((double) (size*2)/(tableA.getRowsPerBlock()));
-        iO+=(int)Math.ceil((double) tableA.getSize()*Math.log(tableA.getSize())/(tableA.getRowsPerBlock()));
+        result.setJoinIOs((int)Math.ceil((double) (size*2)/(tableA.getRowsPerBlock())));
+        result.setSortIOs((int)Math.ceil((double) tableA.getSize()*Math.log(tableA.getSize())/(tableA.getRowsPerBlock())));
         result.setiOs(iO);
         result.setComparitions(comparitions);
         return result;
